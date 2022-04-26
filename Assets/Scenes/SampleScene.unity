@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 1149891198}
   - component: {fileID: 1149891199}
   - component: {fileID: 1149891200}
+  - component: {fileID: 1149891201}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -263,7 +264,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000029802322, y: -0.038928032}
+  m_Offset: {x: -0.000000029802322, y: -0.027475834}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -274,7 +275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.53854996, y: 0.61071897}
+  m_Size: {x: 0.53854996, y: 0.58781457}
   m_EdgeRadius: 0
 --- !u!212 &1149891196
 SpriteRenderer:
@@ -385,10 +386,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   onGround: 0
   wasOnGround: 0
   gizmoLen: 1.1
+--- !u!95 &1149891201
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149891193}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dca284991f7b343ebb72cf654c13bf94, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1265378737
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +421,7 @@ GameObject:
   - component: {fileID: 1265378740}
   - component: {fileID: 1265378739}
   - component: {fileID: 1265378738}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}

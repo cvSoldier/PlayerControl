@@ -11,30 +11,29 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Collision _collision;
+    private Animator playerAnimation;
 
     private bool isSqueezing = false;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _collision = GetComponent<Collision>();
+        playerAnimation = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+        TurnAround();
     }
 
     void Movement()
     {
         float x = Input.GetAxis("Horizontal");
-        float xRaw = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(speed * x, rb.velocity.y);
-        if (xRaw != 0)
-        {
-            transform.localScale = new Vector3(xRaw * Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
 
         if (!isSqueezing)
         {
@@ -49,6 +48,19 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(JumpSqueeze(1.25f, 0.8f, 0.05f));
             }
+        }
+    }
+
+    void TurnAround()
+    {
+        float xRaw = Input.GetAxisRaw("Horizontal");
+        
+        if (xRaw == 1)
+        {
+            playerAnimation.SetBool("LookForward", true);
+        } else if (xRaw == -1)
+        {
+            playerAnimation.SetBool("LookForward", false);
         }
     }
 
