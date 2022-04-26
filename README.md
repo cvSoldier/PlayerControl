@@ -2,3 +2,5 @@
 - [✅] better jump
 - [ ] 相机跟随
 - [ ] 使用rotate实现转身
+- [ ] tilemap
+- [ ] 待机Animation
