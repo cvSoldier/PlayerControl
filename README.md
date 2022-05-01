@@ -2,5 +2,5 @@
 - [✅] better jump
 - [✅] 相机跟随
 - [✅] Animation实现转身
-- [ ] tilemap
+- [✅] tilemap
 - [✅] idle Animation
