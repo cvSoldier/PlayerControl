@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float jumpSpeed = 7;
+    [SerializeField] private float speed = 8;
+    [SerializeField] private float jumpSpeed = 6;
     // private float jumpSpeed = 10;
 
     private Rigidbody2D rb;
