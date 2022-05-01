@@ -4,3 +4,5 @@
 - [✅] Animation实现转身
 - [✅] tilemap
 - [✅] idle Animation
+- [ ] background
+- [ ] bg和地图差位移动
