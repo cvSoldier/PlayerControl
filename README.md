@@ -3,4 +3,4 @@
 - [✅] 相机跟随
 - [✅] Animation实现转身
 - [ ] tilemap
-- [ ] 待机Animation
+- [✅] idle Animation

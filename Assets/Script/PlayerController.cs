@@ -42,11 +42,13 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 StartCoroutine(JumpSqueeze(0.5f, 1.2f, 0.1f));
+                playerAnimation.SetBool("isJump", true);
             }
             // 落地
             if (!_collision.wasOnGround && _collision.onGround)
             {
                 StartCoroutine(JumpSqueeze(1.25f, 0.8f, 0.05f));
+                playerAnimation.SetBool("isJump", false);
             }
         }
     }
