@@ -1,4 +1,5 @@
 - [✅] 移动
+  - [✅] CompositeCollider2D合并Tilemap collider,解决移动卡顿问题。
 - [✅] better jump
 - [✅] 相机跟随
 - [✅] Animation实现转身
