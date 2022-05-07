@@ -10,6 +10,13 @@ public class CollisionNpc : MonoBehaviour
 {
     public TextMeshProUGUI FigurineTitle;
     public NPCConversation chefConversation;
+    
+    private ProcessManager _processManager;
+    private void Start()
+    {
+        _processManager = GameObject.FindWithTag("ProcessManager").GetComponent<ProcessManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name != "Player") return;
@@ -22,6 +29,7 @@ public class CollisionNpc : MonoBehaviour
 
         if (gameObject.name == "Chef")
         {
+            _processManager.ShutGameDown();
             ConversationManager.Instance.StartConversation(chefConversation);
         }
     }

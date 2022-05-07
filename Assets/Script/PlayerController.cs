@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Collision _collision;
     private Animator playerAnimation;
+    private ProcessManager _processManager;
 
     private bool isSqueezing = false;
 
@@ -21,11 +22,17 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _collision = GetComponent<Collision>();
         playerAnimation = GetComponent<Animator>();
+        _processManager = GameObject.FindWithTag("ProcessManager").GetComponent<ProcessManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_processManager.isGameover())
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            return;
+        };
         Movement();
         TurnAround();
     }
