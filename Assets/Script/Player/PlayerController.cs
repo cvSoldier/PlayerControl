@@ -7,11 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 8;
     [SerializeField] private float jumpSpeed = 6;
-    // private float jumpSpeed = 10;
+    private float fadeTime = 1f;
 
     private Rigidbody2D rb;
     private Collision _collision;
     private Animator playerAnimation;
+    private Fadeout _fadeout;
     private ProcessManager _processManager;
 
     private bool isSqueezing = false;
@@ -22,17 +23,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _collision = GetComponent<Collision>();
         playerAnimation = GetComponent<Animator>();
+        _fadeout = GetComponent<Fadeout>();
         _processManager = GameObject.FindWithTag("ProcessManager").GetComponent<ProcessManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_processManager.isGameover())
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            return;
-        };
+        if (_processManager.isGameover()) return;
         Movement();
         TurnAround();
     }
@@ -95,5 +93,22 @@ public class PlayerController : MonoBehaviour
         }
 
         isSqueezing = false;
+    }
+
+    IEnumerator slowMoveThreeSeconds()
+    {
+        rb.velocity = new Vector2(speed / 2, 0);
+        yield return new WaitForSeconds(fadeTime);
+        rb.velocity = Vector2.zero;
+    }
+
+    public void StopMoving()
+    {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+    }
+    public void GameoverSlowMove()
+    {
+        StartCoroutine("slowMoveThreeSeconds");
+        _fadeout.BeginFade();
     }
 }
