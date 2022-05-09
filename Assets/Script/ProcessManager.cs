@@ -7,11 +7,13 @@ public class ProcessManager : MonoBehaviour
     private bool gameover = false;
 
     private PlayerController _playerController;
+    private BgmFade _bgmFade;
     
     // Start is called before the first frame update
     void Start()
     {
         _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        _bgmFade = GameObject.FindWithTag("MainCamera").GetComponent<BgmFade>();
     }
 
 
@@ -19,6 +21,7 @@ public class ProcessManager : MonoBehaviour
     public void Step1()
     {
         _playerController.GameoverSlowMove();
+        _bgmFade.beginFadeBgm();
     }
 
     // chef dialog + flipX, 镜头变黑缩紧。
