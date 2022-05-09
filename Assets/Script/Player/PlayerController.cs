@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 8;
     [SerializeField] private float jumpSpeed = 6;
+    [SerializeField] private AudioClip duckGuk;
     private float fadeTime = 1f;
 
     private Rigidbody2D rb;
     private Collision _collision;
     private Animator playerAnimation;
+    private AudioSource _audioSource;
     private Fadeout _fadeout;
     private ProcessManager _processManager;
 
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _collision = GetComponent<Collision>();
         playerAnimation = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         _fadeout = GetComponent<Fadeout>();
         _processManager = GameObject.FindWithTag("ProcessManager").GetComponent<ProcessManager>();
     }
@@ -110,5 +113,10 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine("slowMoveThreeSeconds");
         _fadeout.BeginFade();
+    }
+
+    public void DuckCall()
+    {
+        _audioSource.PlayOneShot(duckGuk, 1f);
     }
 }

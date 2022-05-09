@@ -36,10 +36,10 @@ public class ProcessManager : MonoBehaviour
         ConversationManager.Instance.StartConversation(Conversation);
     }
 
-    // chef dialog + flipX, 镜头变黑缩紧。
+    // duck 叫 + 飙血, 镜头变黑缩紧。
     public void Step2()
     {
-        
+        _playerController.DuckCall();
     }
     public void ShutGameDown()
     {
