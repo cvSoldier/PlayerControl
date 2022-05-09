@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DialogueEditor;
 using UnityEngine;
 
 public class ProcessManager : MonoBehaviour
@@ -7,13 +8,16 @@ public class ProcessManager : MonoBehaviour
     private bool gameover = false;
 
     private PlayerController _playerController;
+    private SpriteRenderer _chefSpriteRenderer;
     private BgmFade _bgmFade;
+    public NPCConversation Conversation;
     
     // Start is called before the first frame update
     void Start()
     {
         _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _bgmFade = GameObject.FindWithTag("MainCamera").GetComponent<BgmFade>();
+        _chefSpriteRenderer = GameObject.Find("Chef").GetComponent<SpriteRenderer>();
     }
 
 
@@ -22,6 +26,14 @@ public class ProcessManager : MonoBehaviour
     {
         _playerController.GameoverSlowMove();
         _bgmFade.beginFadeBgm();
+        StartCoroutine("waitStartConversation");
+    }
+
+    IEnumerator waitStartConversation()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _chefSpriteRenderer.flipX = true;
+        ConversationManager.Instance.StartConversation(Conversation);
     }
 
     // chef dialog + flipX, 镜头变黑缩紧。
