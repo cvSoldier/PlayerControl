@@ -9,9 +9,11 @@ public class ProcessManager : MonoBehaviour
 
     private PlayerController _playerController;
     private SpriteRenderer _chefSpriteRenderer;
+    // start时isActive = false，不能用Find获取到
+    [SerializeField] private GameObject _bloodParticle;
     private BgmFade _bgmFade;
     public NPCConversation Conversation;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class ProcessManager : MonoBehaviour
     public void Step2()
     {
         _playerController.DuckCall();
+        _bloodParticle.gameObject.SetActive(true);
     }
     public void ShutGameDown()
     {
