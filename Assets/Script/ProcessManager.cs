@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DialogueEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProcessManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ProcessManager : MonoBehaviour
     [SerializeField] private GameObject _bloodParticle;
     private BgmFade _bgmFade;
     public NPCConversation Conversation;
+    [SerializeField] private GameObject gameUI;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,7 @@ public class ProcessManager : MonoBehaviour
     {
         _playerController.DuckCall();
         _bloodParticle.gameObject.SetActive(true);
+        gameUI.gameObject.SetActive(true);
     }
     public void ShutGameDown()
     {
@@ -53,5 +56,9 @@ public class ProcessManager : MonoBehaviour
     public bool isGameover()
     {
         return gameover;
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
