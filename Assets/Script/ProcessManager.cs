@@ -15,6 +15,7 @@ public class ProcessManager : MonoBehaviour
     private BgmFade _bgmFade;
     public NPCConversation Conversation;
     [SerializeField] private GameObject gameUI;
+    private DontDestory _dontDestory;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class ProcessManager : MonoBehaviour
         _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _bgmFade = GameObject.FindWithTag("MainCamera").GetComponent<BgmFade>();
         _chefSpriteRenderer = GameObject.Find("Chef").GetComponent<SpriteRenderer>();
+        _dontDestory = GameObject.FindWithTag("DontDestory").GetComponent<DontDestory>();
     }
 
 
@@ -59,6 +61,7 @@ public class ProcessManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        _dontDestory.TimesPlusPlus();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

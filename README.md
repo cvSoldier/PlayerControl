@@ -7,3 +7,5 @@
 - [✅] idle Animation
 - [✅] background
 - [✅] Parallax background
+- [✅] DontDestroyOnLoad跨场景保存数据
+- [ ] 多周目对话剧情
