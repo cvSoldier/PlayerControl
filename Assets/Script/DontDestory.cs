@@ -21,6 +21,7 @@ public class DontDestory : MonoBehaviour
     public void TimesPlusPlus()
     {
         times++;
+        if (times > 1) times = 0;
     }
 
     public int GetTimes()

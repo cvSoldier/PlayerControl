@@ -45,6 +45,6 @@ public class BgmFade : MonoBehaviour
     }
     public void beginFadeBgm()
     {
-        fadeMusic(0,1f);
+        fadeMusic(0.5f,1f);
     }
 }

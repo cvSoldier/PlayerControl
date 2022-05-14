@@ -12,9 +12,11 @@ public class CollisionNpc : MonoBehaviour
     public NPCConversation chefConversation;
     
     private ProcessManager _processManager;
+    private DontDestory _dontDestory;
     private void Start()
     {
         _processManager = GameObject.FindWithTag("ProcessManager").GetComponent<ProcessManager>();
+        _dontDestory = GameObject.FindWithTag("DontDestory").GetComponent<DontDestory>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -29,8 +31,20 @@ public class CollisionNpc : MonoBehaviour
 
         if (gameObject.name == "Chef")
         {
-            _processManager.ShutGameDown();
-            ConversationManager.Instance.StartConversation(chefConversation);
+            NPCConversation curConversation = null;
+            if (_dontDestory.GetTimes() ==  0)
+            {
+                curConversation = chefConversation;
+            } else if (_dontDestory.GetTimes() == 1)
+            {
+                curConversation = GameObject.Find("SecondConversation").GetComponent<NPCConversation>();
+            }
+            
+            if (curConversation != null)
+            {
+                _processManager.ShutGameDown();
+                ConversationManager.Instance.StartConversation(curConversation);
+            }
         }
     }
 
