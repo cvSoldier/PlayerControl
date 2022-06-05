@@ -8,4 +8,6 @@
 - [✅] background
 - [✅] Parallax background
 - [✅] DontDestroyOnLoad跨场景保存数据
-- [ ] 多周目对话剧情
+- [✅] 多周目对话剧情
+- [✅] 土狼跳跃  
+- [ ] 输入缓冲
