@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 8;
     [SerializeField] private float jumpSpeed = 6;
     [SerializeField] private AudioClip duckGuk;
+    public Boolean CanJump;
     private float fadeTime = 1f;
+    private float graceTime = 10f;
+    private float graceTimer;
 
     private Rigidbody2D rb;
     private Collision _collision;
@@ -30,14 +33,36 @@ public class PlayerController : MonoBehaviour
         _processManager = GameObject.FindWithTag("ProcessManager").GetComponent<ProcessManager>();
     }
 
+    private void FixedUpdate()
+    {
+        computeGraceTimer();
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (_processManager.isGameover()) return;
         Movement();
         TurnAround();
+        CanJump = _collision.onGround || graceTimer > 0;
     }
 
+    void computeGraceTimer()
+    {
+        if (rb.velocity.y > 0.1f && !_collision.onGround)
+        {
+            graceTimer = 0;
+        }
+
+        if (_collision.onGround)
+        {
+            graceTimer = graceTime;
+        }
+        else
+        {
+            graceTimer -= 1;
+        }
+    }
     void Movement()
     {
         float x = Input.GetAxis("Horizontal");
@@ -46,11 +71,12 @@ public class PlayerController : MonoBehaviour
         if (!isSqueezing)
         {
             // 起跳
-            if (Input.GetButtonDown("Jump") && _collision.onGround)
+            if (Input.GetButtonDown("Jump") && (_collision.onGround || graceTimer > 0))
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 StartCoroutine(JumpSqueeze(0.5f, 1.2f, 0.1f));
                 playerAnimation.SetBool("isJump", true);
+                graceTimer = 0;
             }
             // 落地
             if (!_collision.wasOnGround && _collision.onGround)
